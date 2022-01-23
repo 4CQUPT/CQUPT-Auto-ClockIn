@@ -1,8 +1,4 @@
-// version v1.1
-// create by ourongxing
-// detail url: https://github.com/ourongxing/CQUPT-Health-ClockIn
-
-import { Base64, getLocalTime, getMrdkKey, getTimeStamp } from "utils"
+import { Base64, getMrdkKey, getTimeStamp } from "utils"
 import got from "got"
 import { option } from "option"
 import {
@@ -13,10 +9,10 @@ import {
 } from "types"
 
 const gotOption = {
-  // header: {
-  //   "User-Agent":
-  //     "Mozilla/5.0 (iPad; CPU OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.4"
-  // },
+  headers: {
+    "User-Agent":
+      "Mozilla/5.0 (iPad; CPU OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.4"
+  },
   timeout: {
     request: 3000
   },
@@ -161,11 +157,6 @@ const checkClocked = async (id: string) => {
   try {
     const res = (await got
       .post("https://we.cqupt.edu.cn/api/mrdk/get_mrdk_flag.php", {
-        headers: {
-          "User-Agent":
-            "Mozilla/5.0 (iPad; CPU OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.4",
-          "Content-Type": "application/json"
-        },
         ...gotOption,
         json: {
           key: Base64.encode(
@@ -222,4 +213,5 @@ export const main_handler = async (event?: any, context?: any) => {
   await push(isSuccess ? "打卡成功" : "打卡失败，请自行检查", option.qmsg)
 }
 
+// 测试使用
 // main_handler()
