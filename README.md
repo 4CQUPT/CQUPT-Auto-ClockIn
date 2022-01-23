@@ -37,7 +37,7 @@
    ```shell
    > git clone https://github.com/4CQUPT/CQUPT-Auto-ClockIn.git
    > cd CQUPT-ClockIn-Notify
-   > mv src/option.ts_ src/option.ts
+   > mv src/_option.ts src/option.ts
    > pnpm i
    ```
 2. 修改 option.ts
