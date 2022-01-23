@@ -30,7 +30,8 @@ const dateCode = [
   "XCea",
   "63gc",
   "6_Kf"
-];
+]
+
 const hourCode = [
   "89KC",
   "pzTS",
@@ -56,10 +57,23 @@ const hourCode = [
   "Iwfk",
   "TCgR",
   "wbjP"
-];
+]
 
-module.exports = {
-  getMrdkKey(d, h) {
-    return dateCode[d] + hourCode[h];
+const getMrdkKey = (date = getLocalTime()) =>
+  dateCode[date.getDate()] + hourCode[date.getHours()]
+
+const Base64 = {
+  decode(str: string) {},
+  encode(str: string) {
+    return Buffer.from(str).toString("base64")
   }
-};
+}
+
+// 获取北京时间
+const getLocalTime = () =>
+  new Date(Date.now() + (new Date().getTimezoneOffset() + 8 * 60) * 60 * 1000)
+
+// 获取当前时间戳
+const getTimeStamp = () => Math.floor(Date.now() / 1000)
+
+export { getLocalTime, getMrdkKey, getTimeStamp, Base64 }

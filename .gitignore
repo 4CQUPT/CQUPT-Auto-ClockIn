@@ -1,4 +1,4 @@
-main.py
-.vscode
-__pycache__
 node_modules
+pnpm*
+option.ts
+dist
